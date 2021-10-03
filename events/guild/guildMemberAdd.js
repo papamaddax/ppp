@@ -12,7 +12,7 @@ module.exports = async (Discord, client, member) => {
     const captchaImage = new Discord.MessageAttachment(buffer, "captcha.png")
     const captchaEmbed = new Discord.MessageEmbed()
         .setTitle("Sever Verification")
-        .setDescription("You have 15 seconds to finish the captcha below \n If you fail you finish you may use the -verify command to retry")
+        .setDescription("You have 30 seconds to finish the captcha below \n If you fail you finish you may use the -verify command to retry")
         .setImage(`attachment://captcha.png`)
         .setColor("RANDOM")
         .setTimestamp()
@@ -28,7 +28,7 @@ module.exports = async (Discord, client, member) => {
 
     const collector = verificationChannel.createMessageCollector({
         filter,
-        time: 15000,
+        time: 30000,
         max: 1
     });
 
