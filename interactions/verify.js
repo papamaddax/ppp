@@ -1,6 +1,7 @@
 module.exports = {
     name: 'verify',
     async execute(Discord, client, interaction) {
+        interaction.reply({content: 'Please check your dms', ephemeral: true})
         try {
             //captcha generator
             const {
