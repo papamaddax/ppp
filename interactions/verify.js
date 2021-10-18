@@ -1,7 +1,6 @@
 module.exports = {
     name: 'verify',
     async execute(Discord, client, interaction) {
-        interaction.reply({content: 'Please check your dms', ephemeral: true})
         try {
             //captcha generator
             const {
@@ -20,12 +19,16 @@ module.exports = {
                 .setImage(`attachment://captcha.png`)
                 .setColor("RANDOM")
                 .setTimestamp()
-            embed = await verificationChannel.send({
-                content: `${interaction.member}`,
-                embeds: [captchaEmbed],
-                files: [captchaImage]
+                embed = await verificationChannel.send({
+                    content: `${interaction.member}`,
+                    embeds: [captchaEmbed],
+                    files: [captchaImage]
+                });
+                    interaction.reply({
+                        content: 'Please check your dms',
+                        ephemeral: true
+                    })
 
-            });
             client.on("messageCreate", message => {
                 if (message.channel.type !== "DM") return;
                 if (message.author.bot) return;
