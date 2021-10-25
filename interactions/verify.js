@@ -32,11 +32,11 @@ module.exports = {
             client.on("messageCreate", message => {
                 if (message.channel.type !== "DM") return;
                 if (message.author.bot) return;
-                if (message.content == captcha.text && message.author.id == interaction.member.user.id) {
+                if (message.content.toUpperCase() == captcha.text && message.author.id == interaction.member.user.id) {
                     message.reply("Your server verification has been completed")
                     client.guilds.cache.get('892177061362417685').members.cache.get(interaction.member.user.id).roles.add('892195778041360444')
                 }
-                if (message.content !== captcha.text && message.author.id == interaction.member.user.id) {
+                if (message.content.toUpperCase() !== captcha.text && message.author.id == interaction.member.user.id) {
                     return message.reply({ content: "Your server verification has failed", ephemeral: true})
                 }
             })
